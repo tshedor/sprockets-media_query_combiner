@@ -10,6 +10,11 @@ module Sprockets
       def evaluate(context, locals, &block)
         Sass::MediaQueryCombiner::Combiner.combine(data)
       end
+
+      # Required for Sprockets >= 4
+      def self.call(input)
+        Sass::MediaQueryCombiner::Combiner.combine(input[:data])
+      end
     end
   end
 end
